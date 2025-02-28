@@ -14,7 +14,7 @@ public class AttendantService(AppDbContext dbContext) : IAttendantService
             .Select(a => new
             {
                 a,
-                LastOrderCreatedAt = a.Orders!.OrderBy(o => o.CreatedAt).LastOrDefault(),
+                LastOrderCreatedAt = a.Orders!.OrderBy(o => o.CreatedAt).FirstOrDefault(),
             })
             .OrderBy(r =>
                 r.LastOrderCreatedAt == null ? DateTime.MinValue : r.LastOrderCreatedAt.CreatedAt
